@@ -2,8 +2,9 @@
 
 namespace AppliancePalace;
 
-public class Orders : BaseEntity
+public class Orders
 {
+    public Ulid Id { get; set; }
     public ICollection<Product> Products { get; set; } = null!;
     public int Quantity { get; set; }
     public double TotalPrice {  get; set; }

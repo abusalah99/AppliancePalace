@@ -3,8 +3,9 @@ using System.Text.Json.Serialization;
 
 namespace AppliancePalace;
 
-public class User : BaseEntity
+public class User
 {
+    public Ulid Id { get; set; }
     public string UserName { get; set; } = null!;
     public string Email { get; set; } = null!;
     [JsonIgnore]

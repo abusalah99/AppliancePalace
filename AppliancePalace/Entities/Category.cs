@@ -1,7 +1,10 @@
-﻿namespace AppliancePalace;
+﻿using NUlid;
 
-public class Category : BaseEntity
+namespace AppliancePalace;
+
+public class Category
 {
+    public Ulid Id { get; set; }
     public string Name { get; set; } = null!;
     public ICollection<Product>? Products { get; set; }
 }
