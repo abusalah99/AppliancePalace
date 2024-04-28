@@ -4,16 +4,8 @@
     <TargetFramework>net7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <InvariantGlobalization>true</InvariantGlobalization>
+    <InvariantGlobalization>false</InvariantGlobalization>
     <UserSecretsId>aspnet-AppliancePalace-6f9cbd77-093d-4a3b-a8ac-0e7687fe9885</UserSecretsId>
   </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.18" />
-    <PackageReference Include="Microsoft.Identity.Web" Version="2.15.2" />
-    <PackageReference Include="Microsoft.Identity.Web.DownstreamApi" Version="2.15.2" />
-    <PackageReference Include="NUlid" Version="1.7.2" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
-  </ItemGroup>
 
-</Project>

@@ -1,11 +1,10 @@
-﻿using NUlid;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 
-namespace AppliancePalace;
+namespace AppliancePalaceWebsite;
 
 public class User
 {
-    public Ulid Id { get; set; }
+    public int Id { get; set; }
     public string UserName { get; set; } = null!;
     public string Email { get; set; } = null!;
     [JsonIgnore]
@@ -13,6 +12,7 @@ public class User
     public string PhoneNumber { get; set; } = null!;
     public string Address { get; set; } = null!;
     public string City { get; set; } = null!;
-    public RoleEmun Role { get; set; }
-    public ICollection<Orders>? Orders { get; set; }
+    public RoleEmun Role { get; set; } = RoleEmun.User;
+    [JsonIgnore]
+    public ICollection<Order>? Orders { get; set; }
 }

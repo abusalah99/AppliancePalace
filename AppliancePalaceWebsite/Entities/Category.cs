@@ -1,10 +1,8 @@
-﻿using NUlid;
-
-namespace AppliancePalace;
+﻿namespace AppliancePalaceWebsite;
 
 public class Category
 {
-    public Ulid Id { get; set; }
+    public int Id { get; set; }
     public string Name { get; set; } = null!;
     public ICollection<Product>? Products { get; set; }
 }
