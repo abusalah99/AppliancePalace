@@ -5,6 +5,8 @@ VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppliancePalace", "AppliancePalace\AppliancePalace.csproj", "{C39E80D4-DBEF-4FFC-8FE6-C0872C945674}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppliancePalaceWebsite", "AppliancePalaceWebsite\AppliancePalaceWebsite.csproj", "{A098F0FE-916A-4DDB-926F-8258205458D6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{C39E80D4-DBEF-4FFC-8FE6-C0872C945674}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C39E80D4-DBEF-4FFC-8FE6-C0872C945674}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C39E80D4-DBEF-4FFC-8FE6-C0872C945674}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A098F0FE-916A-4DDB-926F-8258205458D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A098F0FE-916A-4DDB-926F-8258205458D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A098F0FE-916A-4DDB-926F-8258205458D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A098F0FE-916A-4DDB-926F-8258205458D6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
