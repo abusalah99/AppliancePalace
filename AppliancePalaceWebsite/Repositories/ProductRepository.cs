@@ -1,5 +1,4 @@
 ﻿
-using AppliancePalaceWebsite.RequestModels;
 using Microsoft.EntityFrameworkCore;
 
 namespace AppliancePalaceWebsite;
