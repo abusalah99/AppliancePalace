@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections;
 
@@ -31,12 +32,14 @@ namespace AppliancePalaceWebsite.Controllers
         }
 
         // GET: CategoryController/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             return View();
         }
 
         // POST: CategoryController/Create
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(CategoryRequestModel request)
@@ -52,6 +55,7 @@ namespace AppliancePalaceWebsite.Controllers
         }
 
         // GET: CategoryController/Edit/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int id)
         {
             Category? category = await _categoryRepository.GetById(id);
@@ -63,6 +67,7 @@ namespace AppliancePalaceWebsite.Controllers
         }
 
         // POST: CategoryController/Edit/5
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, CategoryRequestModelForUpdate request)
@@ -85,12 +90,13 @@ namespace AppliancePalaceWebsite.Controllers
         }
 
         // GET: CategoryController/Delete/5
-/*        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-*/
+        /*        public ActionResult Delete(int id)
+                {
+                    return View();
+                }
+        */
         // POST: CategoryController/Delete/5
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int id)

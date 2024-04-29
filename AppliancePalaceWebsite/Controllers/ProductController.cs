@@ -1,4 +1,5 @@
 ﻿using Azure.Core;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -37,6 +38,7 @@ namespace AppliancePalaceWebsite.Controllers
             return View(product);
         }
 
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Create()
         {
             IEnumerable<Category> categories = await _categoryRepository.GetAll();
@@ -46,6 +48,7 @@ namespace AppliancePalaceWebsite.Controllers
             return View();
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(ProductRequest request)
@@ -84,6 +87,7 @@ namespace AppliancePalaceWebsite.Controllers
         }
 
         // GET: ProductController/Edit/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int id)
         {
             Product? product = await _productRepository.GetById(id);
@@ -99,6 +103,7 @@ namespace AppliancePalaceWebsite.Controllers
         }
 
         // POST: ProductController/Edit/5
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, ProductRequestForUpdate request)
@@ -145,17 +150,18 @@ namespace AppliancePalaceWebsite.Controllers
         }
 
         // GET: ProductController/Delete/5
-/*        public async Task<IActionResult> Delete(int id)
-        {
-            Product? product = await _productRepository.GetById(id);
-            if (product == null)
-            {
-                return NotFound();
-            }
-            return View(product);
-        }*/
+        /*        public async Task<IActionResult> Delete(int id)
+                {
+                    Product? product = await _productRepository.GetById(id);
+                    if (product == null)
+                    {
+                        return NotFound();
+                    }
+                    return View(product);
+                }*/
 
         // POST: ProductController/Delete/5
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int id)

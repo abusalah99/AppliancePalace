@@ -11,6 +11,6 @@ public class User
     public string PhoneNumber { get; set; } = null!;
     public string Address { get; set; } = null!;
     public string City { get; set; } = null!;
-    public RoleEmun Role { get; set; } = RoleEmun.User;
+    public RoleEnum Role { get; set; } = RoleEnum.User;
     public ICollection<Order>? Orders { get; set; }
 }

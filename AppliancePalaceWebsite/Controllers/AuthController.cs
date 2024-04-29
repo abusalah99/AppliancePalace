@@ -40,7 +40,7 @@ namespace AppliancePalaceWebsite.Controllers
 
             user.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
 
-            user.Role = RoleEmun.User;
+            user.Role = RoleEnum.User;
 
             await _userRepository.Add(user);
 

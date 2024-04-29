@@ -1,7 +1,7 @@
 ﻿namespace AppliancePalaceWebsite;
 
-public enum OrderType
+public enum OrderTypeEnum
 {
-    cart = 0,
+    Cart = 0,
     Invoice = 1
 }
