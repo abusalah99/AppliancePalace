@@ -18,7 +18,7 @@ public class CategoryRepository : ICategoryRepository
     }
     public async Task<Category?> GetById(int id)
     {
-        return await _dbContext.Categories.FirstOrDefaultAsync(p => p.Id == id);
+        return await _dbContext.Categories.FirstOrDefaultAsync(u => u.Id == id);
     }
 
     public async Task Add(Category category)
