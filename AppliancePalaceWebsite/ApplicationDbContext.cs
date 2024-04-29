@@ -6,9 +6,10 @@ namespace AppliancePalaceWebsite;
 public class ApplicationDbContext : DbContext
 {
     public DbSet<Product> Products { get; set; }
-    public DbSet<Category> Category { get; set; }
-    public DbSet<Order> Order { get; set; }
-    public DbSet<User> User { get; set; }
+    public DbSet<Category> Categories { get; set; }
+    public DbSet<Order> Orders { get; set; }
+    public DbSet<User> Users { get; set; }
+    public DbSet<OrderProduct> OrderProducts { get; set; }
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -16,6 +17,8 @@ public class ApplicationDbContext : DbContext
         modelBuilder.Entity<Product>(entity =>
         {
             entity.HasKey(e => e.Id);
+
+            entity.Property(e => e.Id).ValueGeneratedOnAdd();
 
             entity.Property(e => e.Name)
                   .HasMaxLength(50)
@@ -41,6 +44,8 @@ public class ApplicationDbContext : DbContext
         {
             entity.HasKey(e => e.Id);
 
+            entity.Property(e => e.Id).ValueGeneratedOnAdd();
+
             entity.Property(e => e.Name)
                   .HasMaxLength(50)
                   .IsRequired();
@@ -53,6 +58,8 @@ public class ApplicationDbContext : DbContext
         modelBuilder.Entity<Order>(entity =>
         {
             entity.HasKey(e => e.Id);
+
+            entity.Property(e => e.Id).ValueGeneratedOnAdd();
 
             entity.HasMany(e => e.ordersProducts)
                   .WithOne(e => e.Order)
@@ -67,6 +74,8 @@ public class ApplicationDbContext : DbContext
         modelBuilder.Entity<User>(entity =>
         {
             entity.HasKey(e => e.Id);
+
+            entity.Property(e => e.Id).ValueGeneratedOnAdd();
 
             entity.HasIndex(e => e.Email)
                   .IsUnique();

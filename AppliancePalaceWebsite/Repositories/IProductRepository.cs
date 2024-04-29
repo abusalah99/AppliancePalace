@@ -2,9 +2,10 @@
 
 public interface IProductRepository
 {
-    IEnumerable<Product> GetAll();
-    Product? GetById(int id);
-    void Create(Product product);
-    void Update(Product product);
-    void Delete(int id);
+    Task<IEnumerable<Product>> GetAll();
+    Task<Product?> GetById(int id);
+    Task Create(Product product);
+    Task Update(Product product);
+    Task Delete(int product);
+    Task<IEnumerable<Product>> Filter(string? name = null, string? brand = null, int categoryId = 0);
 }

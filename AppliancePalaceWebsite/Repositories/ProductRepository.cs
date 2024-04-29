@@ -1,5 +1,6 @@
 ﻿
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 
 namespace AppliancePalaceWebsite;
 
@@ -12,32 +13,57 @@ public class ProductRepository : IProductRepository
         _dbContext = dbContext;
     }
 
-    public IEnumerable<Product> GetAll()
+    public async Task<IEnumerable<Product>> GetAll()
     {
-        return _dbContext.Products.ToList();
+        return await _dbContext.Products.Include(e => e.Category).ToListAsync();
     }
-    public Product? GetById(int id)
+    public async Task<Product?> GetById(int id)
     {
-        return _dbContext.Products.FirstOrDefault(p => p.Id == id);
-    }
-
-    public void Create(Product product)
-    {
-        _dbContext.Products.Add(product);
-        _dbContext.SaveChanges();
+        return  await _dbContext.Products.Include(e=>e.Category).FirstOrDefaultAsync(p => p.Id == id);
     }
 
-    public void Update(Product product)
+    public async Task Create(Product product)
     {
-        _dbContext.Products.Remove(product);
-        _dbContext.SaveChanges();
+        await _dbContext.Products.AddAsync(product);
+        await _dbContext.SaveChangesAsync();
     }
 
-    public void Delete(int id)
+    public async Task Update(Product product)
     {
-        Product? productFromDb = GetById(id);
+        Product? productFromDb = await GetById(product.Id);
+        if (product == null)
+            throw new ArgumentNullException(nameof(product));
 
-        _dbContext.Products.Remove(productFromDb);
-        _dbContext.SaveChanges();
+        await Task.Run(() => _dbContext.Products.Update(product));
+        await _dbContext.SaveChangesAsync();
+    }
+
+    public async Task Delete(int id)
+    {
+        Product? product = await GetById(id);
+        if (product == null) 
+            throw new ArgumentNullException(nameof(product));
+
+        await Task.Run(() => _dbContext.Products.Remove(product));
+        await _dbContext.SaveChangesAsync();
+    }
+
+    public async Task<IEnumerable<Product>> Filter(string? name = null, string? brand = null, int categoryId = 0)
+    {
+        IQueryable<Product> query = _dbContext.Products;
+
+        if (!name.IsNullOrEmpty())
+            query = query.Where(e=>e.Name.Contains(name!));
+
+
+        if (!brand.IsNullOrEmpty())
+            query = query.Where(e => e.Brand.Contains(brand!));
+
+        if (categoryId > 0)
+            query = query.Where(e => e.CategoryId == categoryId);
+
+        return await query.Include(e=>e.Category).ToListAsync();
+
     }
 }
+

@@ -1,4 +1,6 @@
-﻿namespace AppliancePalaceWebsite;
+﻿using System.Text.Json.Serialization;
+
+namespace AppliancePalaceWebsite;
 
 public class Product
 {
@@ -11,5 +13,6 @@ public class Product
     public string ImagePath { get; set; } = null!;
     public int CategoryId { get; set; }
     public Category Category { get; set; } = null!;
+    [JsonIgnore]
     public ICollection<OrderProduct>? ordersProducts { get; set; }
 }
