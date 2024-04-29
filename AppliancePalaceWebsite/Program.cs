@@ -12,6 +12,9 @@ builder.Services.AddDbContext<ApplicationDbContext>(
                .EnableSensitiveDataLogging()
                .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
 
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<ICategoryRepository,  CategoryRepository>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

@@ -1,4 +1,6 @@
-﻿namespace AppliancePalaceWebsite;
+﻿using System.Text.Json.Serialization;
+
+namespace AppliancePalaceWebsite;
 
 public class Category
 {

@@ -21,21 +21,29 @@ public class CategoryRepository : ICategoryRepository
         return await _dbContext.Categories.FirstOrDefaultAsync(p => p.Id == id);
     }
 
-    public async Task Create(Category category)
+    public async Task Add(Category category)
     {
         await _dbContext.Categories.AddAsync(category);
         await _dbContext.SaveChangesAsync();
     }
 
-    public async Task Update(Category category)
+    public async Task Edit(Category category)
     {
+        Category? categoryFromDb = await GetById(category.Id);
+        if (categoryFromDb == null)
+            throw new ArgumentNullException(nameof(category));
+
         await Task.Run(() => _dbContext.Categories.Update(category));
         await _dbContext.SaveChangesAsync();
     }
 
-    public async Task Delete(Category category)
+    public async Task Remove(int id)
     {
-        await Task.Run(() => _dbContext.Categories.Remove(category));
+        Category? categoryFromDb = await GetById(id);
+        if (categoryFromDb == null)
+            throw new ArgumentNullException(nameof(categoryFromDb));
+
+        await Task.Run(() => _dbContext.Categories.Remove(categoryFromDb));
         await _dbContext.SaveChangesAsync();
     }
 }

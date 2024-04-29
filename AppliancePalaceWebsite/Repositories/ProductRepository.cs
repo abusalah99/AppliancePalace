@@ -22,29 +22,29 @@ public class ProductRepository : IProductRepository
         return  await _dbContext.Products.Include(e=>e.Category).FirstOrDefaultAsync(p => p.Id == id);
     }
 
-    public async Task Create(Product product)
+    public async Task Add(Product product)
     {
         await _dbContext.Products.AddAsync(product);
         await _dbContext.SaveChangesAsync();
     }
 
-    public async Task Update(Product product)
+    public async Task Edit(Product product)
     {
         Product? productFromDb = await GetById(product.Id);
-        if (product == null)
+        if (productFromDb == null)
             throw new ArgumentNullException(nameof(product));
 
         await Task.Run(() => _dbContext.Products.Update(product));
         await _dbContext.SaveChangesAsync();
     }
 
-    public async Task Delete(int id)
+    public async Task Remove(int id)
     {
-        Product? product = await GetById(id);
-        if (product == null) 
-            throw new ArgumentNullException(nameof(product));
+        Product? productFromDb = await GetById(id);
+        if (productFromDb == null) 
+            throw new ArgumentNullException(nameof(productFromDb));
 
-        await Task.Run(() => _dbContext.Products.Remove(product));
+        await Task.Run(() => _dbContext.Products.Remove(productFromDb));
         await _dbContext.SaveChangesAsync();
     }
 

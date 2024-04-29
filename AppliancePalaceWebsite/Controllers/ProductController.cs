@@ -78,7 +78,7 @@ namespace AppliancePalaceWebsite.Controllers
                 product.ImagePath = Path.Combine("products", fileName);
             }
 
-            await _productRepository.Create(product);
+            await _productRepository.Add(product);
 
             return RedirectToAction(nameof(Index));
         }
@@ -133,7 +133,7 @@ namespace AppliancePalaceWebsite.Controllers
             }
             try
             {
-                await _productRepository.Update(product);
+                await _productRepository.Edit(product);
             }
             catch(ArgumentNullException)
             {
@@ -162,7 +162,7 @@ namespace AppliancePalaceWebsite.Controllers
         {
             try
             {
-                await _productRepository.Delete(id);
+                await _productRepository.Remove(id);
             }
             catch (ArgumentNullException)
             {
