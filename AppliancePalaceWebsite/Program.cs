@@ -18,6 +18,10 @@ builder.Services.AddDbContext<ApplicationDbContext>(
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<ICategoryRepository,  CategoryRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+builder.Services.AddScoped<IOrderProductRepository, OrderProductRepository>();
+builder.Services.AddScoped<IUserRepository, IUserRepository>();
+
 
 builder.Services.AddSingleton<IJwtProvider,JwtProvider>();
 
