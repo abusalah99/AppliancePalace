@@ -53,7 +53,7 @@ public class ProductRepository : IProductRepository
         IQueryable<Product> query = _dbContext.Products;
 
         if (!name.IsNullOrEmpty())
-            query = query.Where(e=>e.Name.Contains(name!));
+            query = query.Where(e => e.Name.Contains(name!));
 
 
         if (!brand.IsNullOrEmpty())
@@ -62,7 +62,7 @@ public class ProductRepository : IProductRepository
         if (categoryId > 0)
             query = query.Where(e => e.CategoryId == categoryId);
 
-        return await query.Include(e=>e.Category).ToListAsync();
+        return await query.Include(e => e.Category).ToListAsync();
 
     }
 }

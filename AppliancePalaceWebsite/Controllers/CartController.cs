@@ -22,6 +22,7 @@ namespace AppliancePalaceWebsite.Controllers
         public async Task<IActionResult> Index()
         {
             int userId = 0;
+
             int.TryParse(User.FindFirst("Id")?.Value, out userId);
 
             Order? cart = await _orderRepository.GetUserCart(userId);

@@ -12,7 +12,7 @@ public class JwtProvider : IJwtProvider
         var claims = new List<Claim>()
         {
             new("Id", user.Id.ToString()),
-            new(ClaimTypes.Role, user.Role.ToString()),
+            new(ClaimTypes.Role, user.Role.ToString())
         };
 
         var SigningCredentials = new SigningCredentials(
